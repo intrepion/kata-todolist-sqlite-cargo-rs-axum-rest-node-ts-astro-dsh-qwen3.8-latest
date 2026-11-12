@@ -1,0 +1,23 @@
+name: Documentation checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  markdown:
+    name: Markdown lint (scaffold only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6.5.0
+        with:
+          node-version: '24'
+      - name: Install locked documentation tooling
+        run: npm ci --prefix .github/docs --ignore-scripts
+      - name: Lint repository Markdown
+        run: node .github/docs/node_modules/markdownlint-cli2/markdownlint-cli2-bin.mjs '**/*.md' '#.github/docs/node_modules/**'

@@ -1,0 +1,11 @@
+{
+  "name": "kata-documentation-checks",
+  "private": true,
+  "description": "Development-only Markdown validation; not an application package.",
+  "devDependencies": {
+    "markdownlint-cli2": "0.24.1"
+  },
+  "overrides": {
+    "katex": "0.18.2"
+  }
+}
